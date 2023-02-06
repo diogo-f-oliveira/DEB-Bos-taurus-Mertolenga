@@ -14,7 +14,7 @@ par.T_ref = C2K(20); free.T_ref = 0; units.T_ref = 'K';        label.T_ref = 'Re
 
 % group parameters
 par.p_Am      = 1689;           free.p_Am      = 1;     units.p_Am = 'J/d.cm^2';  label.p_Am      = 'Surface-specific maximum assimilation rate for females';
-par.kap_X     = 0.123;          free.kap_X     = 1;     units.kap_X = '-';        label.kap_X     = 'digestion efficiency of food to reserve'; % from measured efficiency (Wilk2004 in AndrBlow2004)
+par.kap_X     = 0.123;          free.kap_X     = 0;     units.kap_X = '-';        label.kap_X     = 'digestion efficiency of food to reserve'; % from measured efficiency (Wilk2004 in AndrBlow2004)
 par.v         = 0.09545;        free.v         = 1;     units.v     = 'cm/d';     label.v         = 'energy conductance';
 par.kap       = 0.9174;         free.kap       = 1;     units.kap   = '-';        label.kap       = 'allocation fraction to soma';
 par.p_M       = 26.26;          free.p_M       = 1;     units.p_M   = 'J/d.cm^3'; label.p_M       = '[p_M], vol-spec somatic maint';
@@ -38,26 +38,6 @@ par.s_G       = 0.1;            free.s_G       = 0;     units.s_G   = '-';      
 % auxiliary parameters
 par.T_A   = 8000;         free.T_A   = 0;   units.T_A = 'K';          label.T_A = 'Arrhenius temperature';
 par.del_M = 0.4;          free.del_M = 0;   units.del_M = '-';        label.del_M = 'shape coefficient, thorax perimeter';
-
-%% individual parameters
-for p=1:length(ind_pars)
-    par_name = ind_pars{p};
-    for i=1:length(metaData.inds)
-        varname = [par_name '_' metaData.inds{i}];
-        par.(varname) = par.(par_name);
-        free.(varname) = 1;
-        units.(varname) = units.(par_name);
-        label.(varname) = [label.(par_name) ' for ' metaData.inds{i}];
-    end
-    % female parameters
-    varname = [ind_pars{p} '_f'];
-    par.(varname) = par.(par_name);
-    free.(varname) = 1;
-    units.(varname) = units.(par_name);
-    label.(varname) = [label.(par_name) ' for females'];
-    % Set free to 0 for the individual param
-    free.(par_name) = 0;
-end
 
 %% size of females is different
 if ~isfield(par, 'p_Am_f') && ~isfield(par, 'p_M_f') && ~isfield(par, 'kap_f')

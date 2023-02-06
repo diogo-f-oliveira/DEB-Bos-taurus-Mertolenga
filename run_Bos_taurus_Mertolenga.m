@@ -42,30 +42,6 @@ q = rmfield(par, 'free');
 prdData = feval(['predict_' pets{1}], q, data, auxData);
 [final_lf_values] = compute_discriminate_lf_values(data, prdData, weights, metaData);
 
-%% Compute loss function values using average values for individual params
-% get average individual parameter values
-
-for p=1:numel(metaData.ind_pars)
-    par_name = metaData.ind_pars{p};
-    sum_pars = 0;
-    for i=1:numel(metaData.inds)
-        sum_pars = sum_pars + par.([par_name '_' metaData.inds{i}]);
-    end
-    average_values.(par_name) = sum_pars / numel(metaData.inds);
-end
-
-avg_par = par;
-for p=1:numel(metaData.ind_pars)
-    par_name = metaData.ind_pars{p};
-    for i=1:numel(metaData.inds)
-        avg_par.([par_name '_' metaData.inds{i}]) = average_values.(par_name);
-    end
-end
-
-q = rmfield(avg_par, 'free');
-prdData = feval(['predict_' pets{1}], q, data, auxData);
-[noindpars_lf_values] = compute_discriminate_lf_values(data, prdData, weights, metaData);
-
 %% Save variables, estimation figures, and HTML
 % save(['results_' pets{1} '.mat']);
 estim_options('pars_init_method', 1)
