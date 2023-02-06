@@ -35,13 +35,6 @@ while (abs(prev2_fval-fval) > tol_simplex) && (i < n_runs)
     i = i + 1;
 end
 
-%% Compute final value of loss function
-load(['results_' pets{1} '.mat']);
-[data, auxData, metaData, ~, weights] = feval(['mydata_' pets{1}]);
-q = rmfield(par, 'free');
-prdData = feval(['predict_' pets{1}], q, data, auxData);
-[final_lf_values] = compute_discriminate_lf_values(data, prdData, weights, metaData);
-
 %% Save variables, estimation figures, and HTML
 % save(['results_' pets{1} '.mat']);
 estim_options('pars_init_method', 1)
