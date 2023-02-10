@@ -39,17 +39,18 @@ data.tx = 210;    units.tx = 'd';    label.tx = 'time since birth at weaning'; b
 data.Ri  =  1/449; units.Ri  = '#/d'; label.Ri  = 'maximum reprod rate';  bibkey.Ri  = 'ACBM';   
 
 % Females
-data.tp_f = 625;    units.tp_f = 'd';    label.tp_f = 'time since birth at puberty for females'; bibkey.tp_f = 'BeltButt1992';temp.tp_f = C2K(38.6);  units.temp.tp_f = 'K'; label.temp.tp_f = 'temperature'; 
+data.tp_f = 9.5*365/12;    units.tp_f = 'd';    label.tp_f = 'time since birth at puberty for females'; bibkey.tp_f = 'BeltButt1992';
 data.Wwb_f = 24.3e3; units.Wwb_f = 'g'; label.Wwb_f = 'wet weight at birth for females'; bibkey.Wwb_f = 'ACBM'; 
 data.Wwx_f = 155.4e3; units.Wwx_f = 'g';   label.Wwx_f = 'wet weight at weaning for females'; bibkey.Wwx_f = '';
-data.Wwp_f = 250e3;  units.Wwp_f = 'g';   label.Wwp_f = 'wet weight at puberty for females'; bibkey.Wwp_f = '';
+data.Wwp_f = 205e3;  units.Wwp_f = 'g';   label.Wwp_f = 'wet weight at puberty for females'; bibkey.Wwp_f = '';
 data.Wwi_f = 400e3;   units.Wwi_f = 'g';   label.Wwi_f = 'ultimate wet weight for females';   bibkey.Wwi_f = 'BeneNagy2007'; % Tese Angus ver ref
 
 
 % Males  
-data.tp_m = 625; units.tp_m = 'd'; label.tp_m = 'time since birth at puberty for males'; bibkey.tp_m = 'Luns1982';temp.tp_m = C2K(38.6);  units.temp.tp_m = 'K'; label.temp.tp_m = 'temperature'; 
+data.tp_m = 11.5*365/12; units.tp_m = 'd'; label.tp_m = 'time since birth at puberty for males'; bibkey.tp_m = 'Luns1982';
 data.Wwb_m = 26.1e3; units.Wwb_m = 'g'; label.Wwb_m = 'wet weight at birth for males'; bibkey.Wwb_m = 'ACBM';
 data.Wwx_m = 177.8e3;  units.Wwx_m = 'g';   label.Wwx_m = 'wet weight at weaning for males'; bibkey.Wwx_m = '';
+data.Wwp_m = 320e3;  units.Wwp_m = 'g';   label.Wwp_m = 'wet weight at puberty for males'; bibkey.Wwp_m = '';
 data.Wwi_m = 700e3; units.Wwi_m = 'g';   label.Wwi_m = 'ultimate wet weight for males';   bibkey.Wwi_m = 'ACBM'; % guesstimated from historical perfomance test data 
 
 % Life span
@@ -535,7 +536,7 @@ weights.ind_pars = 0;
 data.psd.t_0 = 96; 
 units.psd.t_0 = 'd';          
 label.psd.t_0 = 'time at start development';
-weights.psd.t_0 = weights.psd.v; % Same weight as other pseudo data
+weights.psd.t_0 = 10*weights.psd.v; % Same weight as other pseudo data
 
 %% pack auxData and txtData for output
 auxData.temp = temp;

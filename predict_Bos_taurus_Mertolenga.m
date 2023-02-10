@@ -79,6 +79,7 @@ end
 % Predictions
 L_bm = L_m * l_bm;                   % cm, structural length at birth at f
 L_xm = L_m * l_xm;
+L_pm = L_m * l_pm;
 L_im = (f - l_T) * L_m;
 
 aT_bm = t_0 + t_bm/ k_M/ TC;              % d, age at birth for males
@@ -86,6 +87,7 @@ tT_xm = (t_xm - t_bm)/ k_M/ TC;           % d, time since birth at weaning for m
 tT_pm = (t_pm - t_bm)/ k_M/ TC;           % d, time since birth at puberty for males
 Wwb_m = L_bm^3 * (1 + f * ome);         % g, wet weight at birth at f
 Wwx_m = L_xm^3 * (1 + f * ome);         % g, wet weight at weaning at f
+Wwp_m = L_pm^3 * (1 + f * ome);         % g, wet weight at puberty at f
 Wwi_m = L_im^3 * (1 + f * ome);         % g, ultimate wet weight at f
 
 %% Uni-variate data
@@ -153,7 +155,7 @@ prdData.Wwi_f = Wwi_f;
 prdData.tp_m = tT_pm;
 prdData.Wwb_m = Wwb_m;
 prdData.Wwx_m = Wwx_m;
-% prdData.Wwp_m = Ww_pm;
+prdData.Wwp_m = Wwp_m;
 prdData.Wwi_m = Wwi_m;
 
 % Common data
