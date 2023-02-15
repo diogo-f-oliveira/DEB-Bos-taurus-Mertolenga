@@ -9,13 +9,6 @@ TC = tempcorr(temp.Wwb_f, par.T_ref, par.T_A);
 %% Females
 % get params for females
 female_pars = par;
-for p=1:length(extra.ind_pars)
-    female_pars.(extra.ind_pars{p}) = par.([extra.ind_pars{p} '_f']);
-end
-% Female size is different
-if isempty(extra.ind_pars)
-    female_pars.p_Am = par.p_Am_f;
-end
 if ~filter_stx_fast(female_pars)
     prdData = []; info = 0; return
 end
@@ -53,17 +46,12 @@ RT_i = TC * kap_R .* SR/ UE0; % set reprod rate of juveniles to zero
 %% Males
 % Average individual parameters
 % kap_X is not needed
-n_animals = length(auxData.extra.inds);
+
 male_pars = par;
-for p=1:length(extra.ind_pars)
-    sum_param = 0;
-    param_name = extra.ind_pars{p};
-    for i=1:n_animals
-        aid = auxData.names.inds{i};
-        sum_param = sum_param + par.([param_name '_' aid]);
-    end
-    male_pars.(param_name) = sum_param / n_animals;
-end
+male_pars.p_Am = par.p_Am_m;
+male_pars.E_Hx = par.E_Hx_m;
+male_pars.E_Hp = par.E_Hp_m;
+
 if ~filter_stx_fast(male_pars)
     prdData = []; info = 0; return
 end
@@ -90,10 +78,11 @@ Wwx_m = L_xm^3 * (1 + f * ome);         % g, wet weight at weaning at f
 Wwp_m = L_pm^3 * (1 + f * ome);         % g, wet weight at puberty at f
 Wwi_m = L_im^3 * (1 + f * ome);         % g, ultimate wet weight at f
 
-%% Uni-variate data
+%% Individual data
+n_animals = length(auxData.extra.inds);
 for i=1:n_animals
     ind_id = auxData.names.inds{i};
-    ind_pars = par;
+    ind_pars = male_pars;
     for p=1:length(extra.ind_pars)
         ind_pars.(extra.ind_pars{p}) = par.([extra.ind_pars{p} '_' ind_id]);
     end
@@ -141,32 +130,35 @@ for i=1:n_animals
     end
 end
 
+% Dummy vars
+prdData.inds = 10;
+prdData.ind_pars = 10;
+
 %% pack to output
 
 % % Zero-variate data
 % Females
-prdData.tp_f = tT_pf;
 prdData.Wwb_f = Wwb_f;
+prdData.tx_f = tT_xf;
 prdData.Wwx_f = Wwx_f;
+prdData.tp_f = tT_pf;
 prdData.Wwp_f = Wwp_f;
 prdData.Wwi_f = Wwi_f;
 
 % Males
-prdData.tp_m = tT_pm;
 prdData.Wwb_m = Wwb_m;
+prdData.tx_m = tT_xm;
 prdData.Wwx_m = Wwx_m;
+prdData.tp_m = tT_pm;
 prdData.Wwp_m = Wwp_m;
 prdData.Wwi_m = Wwi_m;
 
 % Common data
 prdData.ab = 0.5 * (aT_bm + aT_bf);
-prdData.tx = 0.5 * (tT_xm + tT_xf);
+%prdData.tx = 0.5 * (tT_xm + tT_xf);
 % prdData.am = aT_m;
 prdData.Ri = RT_i;
 
-% Dummy vars
-prdData.inds = 10;
-prdData.ind_pars = 10;
 
 
 end
