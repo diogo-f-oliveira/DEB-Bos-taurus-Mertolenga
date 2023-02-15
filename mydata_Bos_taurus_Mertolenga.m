@@ -61,6 +61,14 @@ data.Wwi_m = 700e3; units.Wwi_m = 'g';   label.Wwi_m = 'ultimate wet weight for 
 
 %% set weights for all real data
 weights = setweights(data, []);
+weights.ab = 10 * weights.ab;
+weights.Wwp_f = 0.2 * weights.Wwp_f;
+weights.Wwx_f = 0.2 * weights.Wwx_f;
+weights.Wwp_m = 0.2 * weights.Wwp_m;
+weights.Wwx_m = 0.2 * weights.Wwx_m;
+
+
+
 %% Set temperature data and adjust weights
 nm = fieldnames(data);
 temp = struct();
@@ -77,13 +85,15 @@ end
 
 %% set pseudodata and respective weights
 [data, units, label, weights] = addpseudodata(data, units, label, weights);
+% weights.psd.v = 2 * weights.psd.v; 
+
 
 %weights.psd = setweights(data.psd, []);
 % Add pseudodata for diapause t_0
-data.psd.t_0 = 96; 
-units.psd.t_0 = 'd';          
-label.psd.t_0 = 'time at start development';
-weights.psd.t_0 = 200*weights.psd.v; % Same weight as other pseudo data
+% data.psd.t_0 = 96; 
+% units.psd.t_0 = 'd';          
+% label.psd.t_0 = 'time at start development';
+% weights.psd.t_0 = 200*weights.psd.v; % Same weight as other pseudo data
 
 %% pack auxData and txtData for output
 auxData.temp = temp;
