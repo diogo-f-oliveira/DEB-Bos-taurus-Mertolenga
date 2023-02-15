@@ -20,6 +20,7 @@ estim_options('results_output', 0);
 estim_options('method', 'nm');
 [nsteps, info, fval] = estim_pars;
 
+%% Restart until convergence
 n_runs = 500;
 estim_options('pars_init_method', 1);
 estim_options('results_output', 0);

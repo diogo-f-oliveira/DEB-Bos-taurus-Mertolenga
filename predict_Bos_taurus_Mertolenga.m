@@ -9,7 +9,6 @@ TC = tempcorr(temp.Wwb_f, par.T_ref, par.T_A);
 %% Females
 % get params for females
 female_pars = par;
-female_pars.p_Am = par.p_Am_f;
 if ~filter_stx_fast(female_pars)
     prdData = []; info = 0; return
 end
@@ -49,6 +48,10 @@ RT_i = TC * kap_R .* SR/ UE0; % set reprod rate of juveniles to zero
 % kap_X is not needed
 
 male_pars = par;
+male_pars.p_Am = par.p_Am_m;
+male_pars.E_Hx = par.E_Hx_m;
+male_pars.E_Hp = par.E_Hp_m;
+
 if ~filter_stx_fast(male_pars)
     prdData = []; info = 0; return
 end
@@ -81,22 +84,24 @@ Wwi_m = L_im^3 * (1 + f * ome);         % g, ultimate wet weight at f
 
 % % Zero-variate data
 % Females
-prdData.tp_f = tT_pf;
 prdData.Wwb_f = Wwb_f;
+prdData.tx_f = tT_xf;
 prdData.Wwx_f = Wwx_f;
+prdData.tp_f = tT_pf;
 prdData.Wwp_f = Wwp_f;
 prdData.Wwi_f = Wwi_f;
 
 % Males
-prdData.tp_m = tT_pm;
 prdData.Wwb_m = Wwb_m;
+prdData.tx_m = tT_xm;
 prdData.Wwx_m = Wwx_m;
+prdData.tp_m = tT_pm;
 prdData.Wwp_m = Wwp_m;
 prdData.Wwi_m = Wwi_m;
 
 % Common data
 prdData.ab = 0.5 * (aT_bm + aT_bf);
-prdData.tx = 0.5 * (tT_xm + tT_xf);
+%prdData.tx = 0.5 * (tT_xm + tT_xf);
 % prdData.am = aT_m;
 prdData.Ri = RT_i;
 
