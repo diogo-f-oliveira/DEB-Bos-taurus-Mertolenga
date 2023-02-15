@@ -62,10 +62,10 @@ data.Wwi_m = 700e3; units.Wwi_m = 'g';   label.Wwi_m = 'ultimate wet weight for 
 %% set weights for all real data
 weights = setweights(data, []);
 weights.ab = 10 * weights.ab;
-weights.Wwp_f = 0.2 * weights.Wwp_f;
-weights.Wwx_f = 0.2 * weights.Wwx_f;
-weights.Wwp_m = 0.2 * weights.Wwp_m;
-weights.Wwx_m = 0.2 * weights.Wwx_m;
+% weights.Wwp_f = 0.2 * weights.Wwp_f;
+% weights.Wwx_f = 0.2 * weights.Wwx_f;
+% weights.Wwp_m = 0.2 * weights.Wwp_m;
+% weights.Wwx_m = 0.2 * weights.Wwx_m;
 
 
 
