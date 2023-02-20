@@ -43,6 +43,16 @@ SC = f * L_m.^3 .* (g ./ L_m + (1 + L_T ./ L_m)/ L_m)/ (f + g);
 SR = (1 - kap) * SC - k_J * E_Hp / p_Am;
 RT_i = TC * kap_R .* SR/ UE0; % set reprod rate of juveniles to zero
 
+% uni-variate data females
+  
+  % time-weight 
+  pars_lb = [g; k; v_Hb];                    % compose parameters
+  ir_B = 3/ k_M + 3 * f * L_m/ v; rT_B = TC/ ir_B;     % d, 1/von Bert growth rate
+  L_i = f * L_m - L_T; L_b = get_lb(pars_lb, f) * L_m; % cm, length at birth, ultimate
+  L = L_i - (L_i - L_b) * exp( - rT_B * tW_f(:,1));    % cm, structural length at time
+  EWw_f = L.^3 * (1 + f * w);                          % g, wet weight
+
+
 %% Males
 % Average individual parameters
 % kap_X is not needed
@@ -78,6 +88,14 @@ Wwx_m = L_xm^3 * (1 + f * ome);         % g, wet weight at weaning at f
 Wwp_m = L_pm^3 * (1 + f * ome);         % g, wet weight at puberty at f
 Wwi_m = L_im^3 * (1 + f * ome);         % g, ultimate wet weight at f
 
+% uni-variate data males
+  
+  % time-weight 
+  pars_lb = [g; k; v_Hb];                    % compose parameters
+  ir_B = 3/ k_M + 3 * f * L_m/ v; rT_B = TC/ ir_B;     % d, 1/von Bert growth rate
+  L_i = f * L_m - L_T; L_b = get_lb(pars_lb, f) * L_m; % cm, length at birth, ultimate
+  L = L_i - (L_i - L_b) * exp( - rT_B * tW_m(:,1));    % cm, structural length at time
+  EWw_m = L.^3 * (1 + f * w);                          % g, wet weight
 
 
 %% pack to output
@@ -90,6 +108,7 @@ prdData.Wwx_f = Wwx_f;
 prdData.tp_f = tT_pf;
 prdData.Wwp_f = Wwp_f;
 prdData.Wwi_f = Wwi_f;
+prdData.tW_f = EWw_f;
 
 % Males
 prdData.Wwb_m = Wwb_m;
@@ -98,6 +117,8 @@ prdData.Wwx_m = Wwx_m;
 prdData.tp_m = tT_pm;
 prdData.Wwp_m = Wwp_m;
 prdData.Wwi_m = Wwi_m;
+prdData.tW_m = EWw_m;
+
 
 % Common data
 prdData.ab = 0.5 * (aT_bm + aT_bf);

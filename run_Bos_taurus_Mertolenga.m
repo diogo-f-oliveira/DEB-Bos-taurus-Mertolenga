@@ -16,8 +16,8 @@ estim_options('max_fun_evals',5e4);
 % estim_options('tol_simplex',tol_simplex);
 
 estim_options('pars_init_method', 1);
-estim_options('results_output', 2);
-estim_options('method', 'nm');
+estim_options('results_output', 3);
+estim_options('method', 'no');
 % [nsteps, info, fval] = estim_pars;
 
 % %% Restart until convergence
