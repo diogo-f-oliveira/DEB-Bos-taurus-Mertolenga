@@ -26,12 +26,12 @@ par.s_G = 0.1;        free.s_G   = 0;   units.s_G = '-';          label.s_G = 'G
 par.t_0 = 80;         free.t_0   = 0;   units.t_0 = 'd';          label.t_0 = 'time at start development'; 
 
 %% other parameters 
-par.E_Hp_m = 6.493e+07; free.E_Hp_m = 1;   units.E_Hp_m = 'J';       label.E_Hp_m = 'maturity at puberty for males'; 
-par.E_Hx_m = 3.366e+07; free.E_Hx_m = 1;   units.E_Hx_m = 'J';       label.E_Hx_m = 'maturity at weaning for males'; 
-par.f = 1;            free.f     = 0;   units.f = '-';            label.f = 'scaled functional response for 0-var data'; 
-par.p_Am = 26606.1595;  free.p_Am  = 1;   units.p_Am = 'J/d.cm^2';  label.p_Am = 'Surface-specific maximum assimilation rate for females'; 
-par.p_Am_m = 30133.9394;  free.p_Am_m = 1;   units.p_Am_m = 'J/d.cm^2';  label.p_Am_m = 'Surface-specific maximum assimilation rate for males'; 
-
+par.E_Hp_m = 6.493e+07;     free.E_Hp_m = 1;    units.E_Hp_m = 'J';         label.E_Hp_m = 'maturity at puberty for males'; 
+par.E_Hx_m = 3.366e+07;     free.E_Hx_m = 1;    units.E_Hx_m = 'J';         label.E_Hx_m = 'maturity at weaning for males'; 
+par.f = 1;                  free.f     = 0;     units.f = '-';              label.f = 'scaled functional response for 0-var data'; 
+par.p_Am = 26606.1595;      free.p_Am  = 1;     units.p_Am = 'J/d.cm^2';    label.p_Am = 'surface-specific maximum assimilation rate for females'; 
+par.p_Am_m = 30133.9394;    free.p_Am_m = 1;    units.p_Am_m = 'J/d.cm^2';  label.p_Am_m = 'surface-specific maximum assimilation rate for males'; 
+par.del_M = 1;              free.del_M = 1;     units.del_M = '-';          label.del_M = 'shape coefficent for height at withers';
 %% set chemical parameters from Kooy2010 
 [par, units, label, free] = addchem(par, units, label, free, metaData.phylum, metaData.class); 
 
