@@ -34,9 +34,9 @@ Wwb_f = L_bf^3 * (1 + f * ome);         % g, wet weight at birth at f
 Wwx_f = L_xf^3 * (1 + f * ome);         % g, wet weight at weaning at f
 Wwp_f = L_pf^3 * (1 + f * ome);         % g, wet weight at puberty at f
 Wwi_f = L_if^3 * (1 + f * ome);         % g, ultimate wet weight at f
+Lhi_f = L_if / del_M;                   % cm, ultimate withers height at f
 
 % Reproduction rate
-
 Lb = l_bf * L_m; Lp = l_pf * L_m; % volumetric length at birth, puberty
 UE0 = Lb^3 * (f + g)/ v * (1 + 3 * l_bf/ 4/ f); % d.cm^2, scaled cost per foetus
 SC = f * L_m.^3 .* (g ./ L_m + (1 + L_T ./ L_m)/ L_m)/ (f + g);
@@ -70,32 +70,24 @@ L_xm = L_m * l_xm;
 L_pm = L_m * l_pm;
 L_im = (f - l_T) * L_m;
 
-aT_bm = t_0 + t_bm/ k_M/ TC;              % d, age at birth for males
-tT_xm = (t_xm - t_bm)/ k_M/ TC;           % d, time since birth at weaning for males
-tT_pm = (t_pm - t_bm)/ k_M/ TC;           % d, time since birth at puberty for males
+aT_bm = t_0 + t_bm/ k_M/ TC;            % d, age at birth for males
+tT_xm = (t_xm - t_bm)/ k_M/ TC;         % d, time since birth at weaning for males
+tT_pm = (t_pm - t_bm)/ k_M/ TC;         % d, time since birth at puberty for males
 Wwb_m = L_bm^3 * (1 + f * ome);         % g, wet weight at birth at f
 Wwx_m = L_xm^3 * (1 + f * ome);         % g, wet weight at weaning at f
 Wwp_m = L_pm^3 * (1 + f * ome);         % g, wet weight at puberty at f
 Wwi_m = L_im^3 * (1 + f * ome);         % g, ultimate wet weight at f
+Lhi_m = L_im / del_M;                   % cm, ultimate withers height at f
 
 %% Individual data
 n_animals = length(auxData.extra.inds);
+% Growth curve parameters
+rT_B = TC * p_M / 3 / (E_G + f * kap * p_Am / v);
+L_inf = f * L_m - L_T;
+W_inf_3 = nthroot((1 + f * ome) .* L_inf.^3,3);
 for i=1:n_animals
     ind_id = auxData.names.inds{i};
-    ind_pars = male_pars;
-    for p=1:length(extra.ind_pars)
-        ind_pars.(extra.ind_pars{p}) = par.([extra.ind_pars{p} '_' ind_id]);
-    end
-    if ~filter_stx_fast(ind_pars)
-        prdData = []; info = 0; return
-    end
-    vars_pull(ind_pars);  vars_pull(parscomp_st(ind_pars));
         
-    % Growth curve parameters
-    rT_B = TC * p_M / 3 / (E_G + f * kap * p_Am / v);
-    L_inf = f * L_m - L_T;
-    W_inf_3 = nthroot((1 + f * ome) .* L_inf.^3,3);
-    
     % Weight predictions
     tW_varname = ['tW_' ind_id];
     if isfield(data, tW_varname)
@@ -144,6 +136,8 @@ prdData.Wwx_f = Wwx_f;
 prdData.tp_f = tT_pf;
 prdData.Wwp_f = Wwp_f;
 prdData.Wwi_f = Wwi_f;
+prdData.Lhi_f = Lhi_f;
+% prdData.tW_f = EWw_f;
 
 % Males
 prdData.Wwb_m = Wwb_m;
@@ -152,6 +146,9 @@ prdData.Wwx_m = Wwx_m;
 prdData.tp_m = tT_pm;
 prdData.Wwp_m = Wwp_m;
 prdData.Wwi_m = Wwi_m;
+prdData.Lhi_m = Lhi_m;
+% prdData.tW_m = EWw_m;
+
 
 % Common data
 prdData.ab = 0.5 * (aT_bm + aT_bf);
