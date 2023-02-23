@@ -8,38 +8,24 @@ metaData.family     = 'Bovidae';
 metaData.species    = 'Bos_taurus_Mertolenga'; 
 metaData.species_en = 'Mertolenga cattle'; 
 metaData.T_typical  = C2K(38.6); % K, body temp
-metaData.data_0     = {'ab'; 'Ri'; 
+metaData.data_0     = {'ab'; 'am'; 'Ri'; 
     'tx_f'; 'tp_f'; 'Lhi_f'; 'Wwb_f'; 'Wwx_f'; 'Wwp_f'; 'Wwi_f'; 
     'tx_m'; 'tp_m'; 'Lhi_m'; 'Wwb_m'; 'Wwx_m'; 'Wwp_m'; 'Wwi_m'}; 
 metaData.data_1     = {}; 
 
 metaData.COMPLETE = 2.5; % using criteria of LikaKear2011
 
-metaData.author   = {'Paulus Schuckink Kool','Bas Kooijman'};    
-metaData.date_subm = [2012 08 31];              
-metaData.email    = {'bas.kooijman@vu.nl'};            
-metaData.address  = {'VU University Amsterdam'};   
-
-metaData.author_mod_1   = {'Bas Kooijman'};    
-metaData.date_mod_1 = [2015 10 15];              
-metaData.email_mod_1    = {'bas.kooijman@vu.nl'};            
-metaData.address_mod_1  = {'VU University Amsterdam'};   
-
-metaData.author_mod_2   = {'Carlos MGL Teixeira','Gon?alo Marques'};    
-metaData.date_mod_2 = [2016 11 24];              
-metaData.email_mod_2    = {'carlos.teixeira@tecnico.ulisboa.pt','goncalo.marques@tecnico.ulisboa.pt'};            
-metaData.address_mod_2  = {'Universidade de Lisboa'};
-
-metaData.curator     = {'Starrlight Augustine'};
-metaData.email_cur   = {'starrlight.augustine@akvaplan.niva.no'}; 
-metaData.date_acc    = [2015 11 02]; 
+metaData.author   = {'Diogo Oliveira', 'Starrlight Augustine', 'Gonçalo Marques', 'José Pais', 'Nuno Carolino'};    
+metaData.date_subm = [2023 02 23];              
+metaData.email    = {'diogo.miguel.oliveira@tecnico.ulisboa.pt'};            
+metaData.address  = {'Universidade de Lisboa'};   
 
 %% zero-variate data
-% Both
-% data.ab = 287.5;  units.ab = 'd';    label.ab = 'age at birth';    bibkey.ab = '';     
-data.ab = 284;  units.ab = 'd';    label.ab = 'age at birth';    bibkey.ab = 'Quaresma2004';  
+% All temperatures for data are 38.6 ºC and are set below.
 
-data.Ri  =  1/449; units.Ri  = '#/d'; label.Ri  = 'maximum reprod rate';  bibkey.Ri  = 'ACBM'; comment.Ri = 'Inverse of the interval between parturitions';  
+% Both
+data.ab = 284;  units.ab = 'd';    label.ab = 'age at birth';    bibkey.ab = 'Quaresma2004';  
+data.am = 20*365; units.am = 'd'; label.am = 'life span'; bibkey.am = 'Bettencourt2021';  
 
 % Females
 data.tx_f = 210;    units.tx_f = 'd';    label.tx_f = 'time since birth at weaning for females'; bibkey.tx_f = 'ACBM';  comment.tx_f = 'typical weaning age set by farmers';
@@ -52,6 +38,8 @@ data.Wwx_f = 155.4e3; units.Wwx_f = 'g';   label.Wwx_f = 'wet weight at weaning 
 data.Wwp_f = 205e3;  units.Wwp_f = 'g';   label.Wwp_f = 'wet weight at puberty for females'; bibkey.Wwp_f = 'ACBM';
 data.Wwi_f = 400e3;   units.Wwi_f = 'g';   label.Wwi_f = 'ultimate wet weight for females';   bibkey.Wwi_f = 'FAO2023'; 
 
+data.Ri  =  1/449; units.Ri  = '#/d'; label.Ri  = 'maximum reprod rate';  bibkey.Ri  = 'ACBM'; comment.Ri = 'inverse of the interval between parturitions';  
+
 % Males  
 data.tx_m = 210;    units.tx_m = 'd';    label.tx_m = 'time since birth at weaning for males'; bibkey.tx_m = 'ACBM'; comment.tx_m = 'typical weaning age set by farmers';
 data.tp_m = 11.5*365/12; units.tp_m = 'd'; label.tp_m = 'time since birth at puberty for males'; bibkey.tp_m = 'Monteiro2012'; 
@@ -63,31 +51,6 @@ data.Wwx_m = 177.8e3;  units.Wwx_m = 'g';   label.Wwx_m = 'wet weight at weaning
 data.Wwp_m = 320e3;  units.Wwp_m = 'g';   label.Wwp_m = 'wet weight at puberty for males'; bibkey.Wwp_m = 'ACBM';
 data.Wwi_m = 700e3; units.Wwi_m = 'g';   label.Wwi_m = 'ultimate wet weight for males';   bibkey.Wwi_m = 'FAO2023'; 
 
-% Life span
-% data.am = 32.5*365; units.am = 'd'; label.am = 'life span'; bibkey.am = 'DakaMart2006';   temp.am = C2K(38.6); units.temp.am = 'K'; label.temp.am = 'temperature'; 
-
-% data.tW_f = [ ...
-% 0 24.3e3;
-% 0 mean([30e3 46e3]);
-% 210 155.4e3;
-% 9.5*365/12 205e3;
-% 13.8*362 400e3];
-% units.tW_f   = {'d', 'g'};  label.tW_f = {'time since birth', 'wet weight'};  
-% % temp.tW_f    = C2K(38.6);  units.temp.tW_f = 'K'; label.temp.tW_f = 'temperature';
-% bibkey.tW_f = '';
-% comment.tW_f = 'composed from various sources';
-% 
-% 
-% data.tW_m = [ ...
-% 0 26.1e3;
-% 0 mean([30e3 46e3]);
-% 210 177.8e3;
-% 11.5*365/12 320e3;
-% 13.8*362 700e3];
-% units.tW_m   = {'d', 'g'};  label.tW_m = {'time since birth', 'wet weight'};  
-% % temp.tW_m    = C2K(38.6);  units.temp.tW_m = 'K'; label.temp.tW_m = 'temperature';
-% bibkey.tW_m = '';
-% comment.tW_m = 'composed from various sources';
 
 %% uni-variate data
 %% Time vs Weight data 
@@ -584,6 +547,13 @@ txtData.label = label;
 txtData.bibkey = bibkey;
 txtData.comment = comment;
 
+%% Discussion points
+D1 = 'Males are assumed to differ from females by {p_Am}, E_Hx and E_Hp';
+D2 = 'Slow foetal development is assumed'; 
+D3 = 'Scaled functional response is fixed at f=1 because animals are fed ad libitum';
+D4 = 'Diapause is fixed at t_0=80 d since no significant embryo growth is observed before 80 days (PrioLast1979)';
+metaData.discussion = struct('D1', D1, 'D2', D2, 'D3', D3, 'D4', D4);
+
 %% Data Sources and References
 bibkey = 'PrioLast1979'; type = 'Article'; bib = [ ...
 'title = {Development of the {Bovine} {Fetus}},' ...
@@ -653,13 +623,19 @@ bibkey = 'Carolino2020'; type = 'report'; bib = [...
 'year = {2020},'];
 metaData.biblist.(bibkey) = ['''@', type, '{', bibkey, ', ' bib, '}'';'];
 
-%% Discussion points
-D1 = 'Males are assumed to differ from females by {p_Am}, E_Hx and E_Hp';
-D2 = 'Slow foetal development is assumed'; 
-D3 = 'Scaled functional response is fixed at f=1 because animals are fed ad libitum';
-D4 = 'Diapause is fixed at t_0=80 d since no significant embryo growth is observed before 80 days (PrioLast1979)';
-D5 = 'Males and females are assumed to not differ until birth';
-metaData.discussion = struct('D1', D1, 'D2', D2, 'D3', D3, 'D4', D4, 'D5', D5);
+bibkey = 'Bettencourt2021'; type = 'thesis'; bib = [...
+'title = {A atuação do médico veterinário na maximização reprodutiva de uma vacada de carne intervalo entre partos da raça {Mertolenga} como caso de estudo}, ' ...
+'copyright = {openAccess}, ' ...
+'url = {https://www.repository.utl.pt/handle/10400.5/21177}, ' ...
+'language = {por}, ' ...
+'urldate = {2023-02-23}, ' ...
+'school = {Universidade de Lisboa, Faculdade de Medicina Veterinária}, ' ...
+'author = {Bettencourt, Ana Helena Palma}, ' ...
+'month = mar, ' ...
+'year = {2021}, ' ...
+'note = {Accepted: 2021-03-25T11:38:48Z}'];
+metaData.biblist.(bibkey) = ['''@', type, '{', bibkey, ', ' bib, '}'';'];
+
 
 
 

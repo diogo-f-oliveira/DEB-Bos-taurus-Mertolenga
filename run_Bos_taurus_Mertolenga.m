@@ -11,7 +11,6 @@ estim_options('default');
 estim_options('max_step_number',500);
 estim_options('max_fun_evals',5e4);
 estim_options('simplex_size',0.05);
-estim_options('filter',0);
 tol_simplex = 1e-05;  
 estim_options('tol_simplex',tol_simplex);
 
