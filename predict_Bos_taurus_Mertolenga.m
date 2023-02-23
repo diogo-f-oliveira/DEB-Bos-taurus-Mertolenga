@@ -9,7 +9,7 @@ TC = tempcorr(temp.Wwb_f, par.T_ref, par.T_A);
 %% Females
 % get params for females
 female_pars = par;
-if ~filter_stx_fast(female_pars)
+if ~filter_stx(female_pars)
     prdData = []; info = 0; return
 end
 vars_pull(female_pars); vars_pull(parscomp_st(female_pars));
@@ -35,34 +35,29 @@ Wwx_f = L_xf^3 * (1 + f * ome);         % g, wet weight at weaning at f
 Wwp_f = L_pf^3 * (1 + f * ome);         % g, wet weight at puberty at f
 Wwi_f = L_if^3 * (1 + f * ome);         % g, ultimate wet weight at f
 Lhi_f = L_if / del_M;                   % cm, ultimate withers height at f
-% Reproduction rate
 
+% Reproduction rate
 Lb = l_bf * L_m; Lp = l_pf * L_m; % volumetric length at birth, puberty
 UE0 = Lb^3 * (f + g)/ v * (1 + 3 * l_bf/ 4/ f); % d.cm^2, scaled cost per foetus
 SC = f * L_m.^3 .* (g ./ L_m + (1 + L_T ./ L_m)/ L_m)/ (f + g);
 SR = (1 - kap) * SC - k_J * E_Hp / p_Am;
 RT_i = TC * kap_R .* SR/ UE0; % set reprod rate of juveniles to zero
 
-% uni-variate data females
-  
-%   % time-weight 
-%   pars_lb = [g; k; v_Hb];                    % compose parameters
-%   ir_B = 3/ k_M + 3 * f * L_m/ v; rT_B = TC/ ir_B;     % d, 1/von Bert growth rate
-%   L_i = f * L_m - L_T; L_b = get_lb(pars_lb, f) * L_m; % cm, length at birth, ultimate
-%   L = L_i - (L_i - L_b) * exp( - rT_B * tW_f(:,1));    % cm, structural length at time
-%   EWw_f = L.^3 * (1 + f * w);                          % g, wet weight
-% 
+% life span
+pars_tm = [g; k; v_Hb; v_Hx; v_Hp; h_a; s_G];  % compose parameter vector at T_ref
+t_m = get_tm_mod('stx', pars_tm, f);           % -, scaled mean life span at T_ref
+aT_f = t_m/ k_M/ TC;                           % d, mean life span at T
 
 %% Males
 % Average individual parameters
 % kap_X is not needed
 
 male_pars = par;
-male_pars.p_Am = par.p_Am_m;
+male_pars.z = par.z_m;
 male_pars.E_Hx = par.E_Hx_m;
 male_pars.E_Hp = par.E_Hp_m;
 
-if ~filter_stx_fast(male_pars)
+if ~filter_stx(male_pars)
     prdData = []; info = 0; return
 end
 vars_pull(male_pars); vars_pull(parscomp_st(male_pars));
@@ -80,7 +75,6 @@ L_xm = L_m * l_xm;
 L_pm = L_m * l_pm;
 L_im = (f - l_T) * L_m;
 
-aT_bm = t_0 + t_bm/ k_M/ TC;              % d, age at birth for males
 tT_xm = (t_xm - t_bm)/ k_M/ TC;           % d, time since birth at weaning for males
 tT_pm = (t_pm - t_bm)/ k_M/ TC;           % d, time since birth at puberty for males
 Wwb_m = L_bm^3 * (1 + f * ome);         % g, wet weight at birth at f
@@ -88,15 +82,11 @@ Wwx_m = L_xm^3 * (1 + f * ome);         % g, wet weight at weaning at f
 Wwp_m = L_pm^3 * (1 + f * ome);         % g, wet weight at puberty at f
 Wwi_m = L_im^3 * (1 + f * ome);         % g, ultimate wet weight at f
 Lhi_m = L_im / del_M;
-% uni-variate data males
-  
-%   % time-weight 
-%   pars_lb = [g; k; v_Hb];                    % compose parameters
-%   ir_B = 3/ k_M + 3 * f * L_m/ v; rT_B = TC/ ir_B;     % d, 1/von Bert growth rate
-%   L_i = f * L_m - L_T; L_b = get_lb(pars_lb, f) * L_m; % cm, length at birth, ultimate
-%   L = L_i - (L_i - L_b) * exp( - rT_B * tW_m(:,1));    % cm, structural length at time
-%   EWw_m = L.^3 * (1 + f * w);                          % g, wet weight
-% 
+
+% life span
+pars_tm = [g; k; v_Hb; v_Hx; v_Hp; h_a; s_G];  % compose parameter vector at T_ref
+t_m = get_tm_mod('stx', pars_tm, f);           % -, scaled mean life span at T_ref
+aT_m = t_m/ k_M/ TC;                           % d, mean life span at T
 
 %% pack to output
 
@@ -109,7 +99,7 @@ prdData.tp_f = tT_pf;
 prdData.Wwp_f = Wwp_f;
 prdData.Wwi_f = Wwi_f;
 prdData.Lhi_f = Lhi_f;
-% prdData.tW_f = EWw_f;
+prdData.Ri = RT_i;
 
 % Males
 prdData.Wwb_m = Wwb_m;
@@ -119,15 +109,11 @@ prdData.tp_m = tT_pm;
 prdData.Wwp_m = Wwp_m;
 prdData.Wwi_m = Wwi_m;
 prdData.Lhi_m = Lhi_m;
-% prdData.tW_m = EWw_m;
 
 
 % Common data
-prdData.ab = 0.5 * (aT_bm + aT_bf);
-%prdData.tx = 0.5 * (tT_xm + tT_xf);
-% prdData.am = aT_m;
-prdData.Ri = RT_i;
-
+prdData.ab = aT_bf;     % equal for males and females
+prdData.am = 0.5*(aT_f + aT_m);
 
 
 end
