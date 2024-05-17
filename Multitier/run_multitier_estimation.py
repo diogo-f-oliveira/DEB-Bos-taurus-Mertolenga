@@ -13,11 +13,13 @@ def load_data():
     bibkey = 'ACBMPT2020'
     comment = 'Data from 2020 performance test'
 
-    twds_2020 = TimeWeightDataSource(f"../../../../Data/ACBM/CSV Files/weights_2020.csv",
+    data_folder = open('../data_location.txt', 'r').read().strip()
+
+    twds_2020 = TimeWeightDataSource(f"{data_folder}/weights_2020.csv",
                                      id_col='sia', weight_col='weight', date_col='date',
                                      bibkey=bibkey, comment=comment)
 
-    tfds_2020 = TimeFeedIndDataSource(f"../../../../Data/ACBM/CSV Files/feed_consumption_2020.csv",
+    tfds_2020 = TimeFeedIndDataSource(f"{data_folder}/feed_consumption_2020.csv",
                                       id_col='sia', feed_col='dry_intake', date_col='date',
                                       weight_data_source=twds_2020,
                                       bibkey=bibkey, comment=comment)
@@ -26,11 +28,11 @@ def load_data():
     bibkey = 'ACBMPT2021'
     comment = 'Data from 2021 performance test'
 
-    twds_2021 = TimeWeightDataSource(f"../../../../Data/ACBM/CSV Files/weights_2021.csv",
+    twds_2021 = TimeWeightDataSource(f"{data_folder}/weights_2021.csv",
                                      id_col='sia', weight_col='weight', date_col='date',
                                      bibkey=bibkey, comment=comment)
 
-    tfds_2021 = TimeFeedIndDataSource(f"../../../../Data/ACBM/CSV Files/feed_consumption_2021.csv",
+    tfds_2021 = TimeFeedIndDataSource(f"{data_folder}/feed_consumption_2021.csv",
                                       id_col='sia', feed_col='dry_intake', date_col='date',
                                       weight_data_source=twds_2021,
                                       bibkey=bibkey, comment=comment)
@@ -147,30 +149,31 @@ def save_extra_data(tier_name, data_to_save=None):
 
 if __name__ == '__main__':
     multitier = create_tier_structure()
-    # start_date = dt.datetime.now()
-    # print(f'Estimation started at {start_date.ctime()}\n')
+    start_date = dt.datetime.now()
+    print(f'Estimation started at {start_date.ctime()}\n')
 
     # Breed tier
-    # multitier.tiers['breed'].estimate(hide_output=False)
+    multitier.tiers['breed'].estimate(hide_output=False)
     # multitier.tiers['breed'].load_results()
+    save_extra_data('breed')
 
     # Trial tier
-    # multitier.tiers['trial'].estimate(hide_output=False)
+    multitier.tiers['trial'].estimate(hide_output=False)
     # multitier.tiers['trial'].load_results()
 
     # Individual tier
-    # multitier.tiers['individual'].estimate(hide_output=True)
+    multitier.tiers['individual'].estimate(hide_output=True)
     # multitier.tiers['individual'].load_results()
 
-    # end_date = dt.datetime.now()
-    # print(f'Estimation ended at {end_date.ctime()}')
-    # print(f'Total time elapsed: {end_date - start_date}')
+    end_date = dt.datetime.now()
+    print(f'Estimation ended at {end_date.ctime()}')
+    print(f'Total time elapsed: {end_date - start_date}')
 
-    estimate_all_par_combinations(
-        tier_structure=multitier,
-        pars_combinations=get_all_par_combinations(
-            ind_par_choices=['p_Am', 'kap_X', 'p_M', 'v', 'kap'],
-            n_par_options=[1, 2],
-        ),
-        reestimate_complete=False,
-    )
+    # estimate_all_par_combinations(
+    #     tier_structure=multitier,
+    #     pars_combinations=get_all_par_combinations(
+    #         ind_par_choices=['p_Am', 'kap_X', 'p_M', 'v', 'kap'],
+    #         n_par_options=[1, 2],
+    #     ),
+    #     reestimate_complete=False,
+    # )

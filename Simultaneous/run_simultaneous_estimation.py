@@ -13,11 +13,13 @@ def load_data():
     bibkey = 'ACBMPT2020'
     comment = 'Data from 2020 performance test'
 
-    twds_2020 = TimeWeightDataSource(f"../../../../Data/ACBM/CSV Files/weights_2020.csv",
+    data_folder = open('../data_location.txt', 'r').read().strip()
+
+    twds_2020 = TimeWeightDataSource(f"{data_folder}/weights_2020.csv",
                                      id_col='sia', weight_col='weight', date_col='date',
                                      bibkey=bibkey, comment=comment)
 
-    tfds_2020 = TimeFeedIndDataSource(f"../../../../Data/ACBM/CSV Files/feed_consumption_2020.csv",
+    tfds_2020 = TimeFeedIndDataSource(f"{data_folder}/feed_consumption_2020.csv",
                                       id_col='sia', feed_col='dry_intake', date_col='date',
                                       weight_data_source=twds_2020,
                                       bibkey=bibkey, comment=comment)
@@ -26,11 +28,11 @@ def load_data():
     bibkey = 'ACBMPT2021'
     comment = 'Data from 2021 performance test'
 
-    twds_2021 = TimeWeightDataSource(f"../../../../Data/ACBM/CSV Files/weights_2021.csv",
+    twds_2021 = TimeWeightDataSource(f"{data_folder}/weights_2021.csv",
                                      id_col='sia', weight_col='weight', date_col='date',
                                      bibkey=bibkey, comment=comment)
 
-    tfds_2021 = TimeFeedIndDataSource(f"../../../../Data/ACBM/CSV Files/feed_consumption_2021.csv",
+    tfds_2021 = TimeFeedIndDataSource(f"{data_folder}/feed_consumption_2021.csv",
                                       id_col='sia', feed_col='dry_intake', date_col='date',
                                       weight_data_source=twds_2021,
                                       bibkey=bibkey, comment=comment)
@@ -82,8 +84,8 @@ def create_tier_structure():
     }
 
     estimation_settings = {
-        'breed': dict(n_runs=50, results_output_mode=0, n_steps=500, pars_init_method=2, tol_simplex=1e-5),
-        'individual': dict(n_runs=200, results_output_mode=0, n_steps=500, pars_init_method=0, tol_simplex=1e-4),
+        'breed': dict(n_runs=1, results_output_mode=0, n_steps=50, pars_init_method=2, tol_simplex=1e-5),
+        'individual': dict(n_runs=2000, results_output_mode=0, n_steps=500, pars_init_method=2, tol_simplex=1e-4),
     }
     tier_output_folders = {
         'breed': 'free t0',
@@ -114,6 +116,26 @@ def save_breed_pars(multitier: MultiTierStructure):
             f.write(f"{p},{par_value}\n")
 
 
+def save_breed_data(multitier: MultiTierStructure, data_to_save=None):
+    tier = multitier.tiers['individual']
+    errors = multitier.estimation_runner.fetch_errors_from_mat_file(
+        run_files_dir=f"{tier.output_folder}",
+    )
+    predictions = multitier.estimation_runner.fetch_predictions_from_mat_file(
+        run_files_dir=f"{tier.output_folder}",
+    )
+    data_values = multitier.estimation_runner.fetch_data_from_mat_file(
+        run_files_dir=f"{tier.output_folder}",
+    )
+    if data_to_save is None:
+        data_to_save = multitier.estimation_runner.eng.workspace['metaData']['data_0']
+    with open(f"{tier.output_folder}/breed_data_errors.csv", 'w') as f:
+        print('data,value,prediction,error', file=f)
+        for d in data_to_save:
+            if errors[d] > 0:
+                print(f"{d},{data_values[d]},{predictions[d]},{errors[d]}", file=f)
+
+
 if __name__ == '__main__':
     multitier = create_tier_structure()
     start_date = dt.datetime.now()
@@ -127,17 +149,16 @@ if __name__ == '__main__':
 
     # Individual tier
     list_of_tier_sample_lists = [multitier.data.individuals]
-    # multitier.tiers['individual'].estimate(
-    #     list_of_tier_sample_lists=list_of_tier_sample_lists,
-    #     hide_output=False,
-    # )
-    # multitier.tiers['individual'].print_pars(tier_sample_list=list_of_tier_sample_lists[0])
+    multitier.tiers['individual'].estimate(
+        list_of_tier_sample_lists=list_of_tier_sample_lists,
+        hide_output=False,
+    )
+    multitier.tiers['individual'].print_pars(tier_sample_list=list_of_tier_sample_lists[0])
     multitier.tiers['individual'].load_results()
 
     save_breed_pars(multitier)
-
-
+    save_breed_data(multitier)
 
     end_date = dt.datetime.now()
-    # print(f'Estimation ended at {end_date.ctime()}')
-    # print(f'Total time elapsed: {end_date - start_date}')
+    print(f'Estimation ended at {end_date.ctime()}')
+    print(f'Total time elapsed: {end_date - start_date}')
