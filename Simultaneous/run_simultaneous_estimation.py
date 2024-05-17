@@ -85,7 +85,7 @@ def create_tier_structure():
 
     estimation_settings = {
         'breed': dict(n_runs=1, results_output_mode=0, n_steps=50, pars_init_method=2, tol_simplex=1e-5),
-        'individual': dict(n_runs=2000, results_output_mode=0, n_steps=500, pars_init_method=2, tol_simplex=1e-4),
+        'individual': dict(n_runs=2000, results_output_mode=0, n_steps=500, pars_init_method=2, tol_simplex=1e-5),
     }
     tier_output_folders = {
         'breed': 'free t0',

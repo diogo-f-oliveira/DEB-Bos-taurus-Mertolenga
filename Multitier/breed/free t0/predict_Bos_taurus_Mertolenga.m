@@ -111,7 +111,7 @@ for i=1:length(sample_inds)
         t = data.(tW_varname)(:,1);
         % Weight
         W = (1 + f * ome) * (L_inf - (L_inf - L_init) .* exp( - t * rT_B)).^3;
-        prdData.(tW_varname) = W ./ 1e3; % to kgz
+        prdData.(tW_varname) = W ./ 1e3; % to kg
     end
     % Daily feed consumption predictions
     tJX_varname = ['tJX_' ind_id];

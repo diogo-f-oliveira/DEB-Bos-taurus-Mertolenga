@@ -1,2 +1,5 @@
 *.asv
 pathdef.m
+data_location.txt
+.idea/*
+Data/*
