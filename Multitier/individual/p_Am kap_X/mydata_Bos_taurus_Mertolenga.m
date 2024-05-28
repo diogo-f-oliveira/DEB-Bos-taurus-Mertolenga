@@ -27,16 +27,16 @@ metaData.author   = {'Diogo Oliveira', 'Starrlight Augustine', 'Goncalo Marques'
 
 %% Time vs Weight data 
 
-data.tW_PT623806020 = [0 365.0; 21 387.0; 42 394.0; 63 439.0; 84 467.0; 105 489.0; 120 514.0];
-init.tW_PT623806020 = 365.0; units.init.tW_PT623806020 = 'kg'; label.init.tW_PT623806020 = 'Initial weight';
-units.tW_PT623806020 = {'d', 'kg'}; label.tW_PT623806020 = {'Time since start', 'Wet weight'}; txtData.title.tW_PT623806020 = 'Growth curve of individual PT623806020'; comment.tW_PT623806020 = 'Data from 2021 performance test, individual PT623806020'; bibkey.tW_PT623806020 = 'ACBMPT2021';
+data.tW_PT524148448 = [0 268.0; 21 295.0; 42 317.0; 63 340.0; 84 349.0; 105 367.0; 120 388.0];
+init.tW_PT524148448 = 268.0; units.init.tW_PT524148448 = 'kg'; label.init.tW_PT524148448 = 'Initial weight';
+units.tW_PT524148448 = {'d', 'kg'}; label.tW_PT524148448 = {'Time since start', 'Wet weight'}; txtData.title.tW_PT524148448 = 'Growth curve of individual PT524148448'; comment.tW_PT524148448 = 'Data from 2021 performance test, individual PT524148448'; bibkey.tW_PT524148448 = 'ACBMPT2021';
 
 
 %% Time vs Daily feed consumption data
 
-data.tJX_PT623806020 = [0 5.8; 1 8.6; 2 8.8; 3 6.8; 4 8.9; 5 8.1; 6 7.4; 7 9.2; 8 8.6; 9 9.3; 10 8.3; 11 8.6; 12 8.8; 13 7.0; 14 8.8; 15 6.7; 16 9.9; 17 6.7; 18 8.8; 19 9.4; 20 6.1; 21 8.9; 22 7.1; 23 8.6; 24 8.6; 25 8.6; 26 9.7; 27 5.2; 28 7.9; 29 7.8; 30 6.0; 31 9.6; 32 6.3; 33 9.1; 34 7.6; 35 7.8; 36 7.9; 37 8.3; 38 7.9; 39 7.1; 40 8.4; 41 8.0; 42 6.3; 43 9.0; 44 8.2; 45 8.6; 46 6.6; 47 6.2; 48 8.0; 49 6.1; 50 8.6; 52 7.0; 53 7.8; 54 7.1; 55 8.3; 56 7.8; 57 7.5; 58 9.2; 59 6.6; 60 6.5; 61 6.3; 62 6.0; 63 7.6; 64 5.6; 65 8.7; 66 7.8; 67 8.9; 68 6.6; 69 7.0; 70 7.5; 71 7.2; 72 7.9; 73 7.7; 74 8.2; 75 7.0; 76 9.0; 78 7.2; 79 8.6; 80 8.4; 81 9.2; 82 8.0; 83 5.4; 84 8.9; 85 8.3; 86 9.4; 87 7.9; 88 8.9; 89 8.0; 90 9.0; 91 9.6; 92 7.8; 93 9.5; 94 8.8; 95 9.0; 96 8.5; 97 9.3; 98 7.6; 99 9.1; 100 8.4; 101 10.7; 102 8.6; 103 8.3; 104 6.3; 105 8.8; 106 9.2; 107 10.2; 108 9.0; 109 9.3; 111 10.3; 113 10.6; 114 9.8; 115 9.8; 116 10.5; 117 8.0; 118 10.0; 119 7.9];
-init.tJX_PT623806020 = 365.0; units.init.tJX_PT623806020 = 'kg'; label.init.tJX_PT623806020 = 'Initial weight';
-units.tJX_PT623806020 = {'d', 'kg'}; label.tJX_PT623806020 = {'Time since start', 'Daily food consumption'}; txtData.title.tJX_PT623806020 = 'Daily feed consumption of individual PT623806020'; comment.tJX_PT623806020 = 'Data from 2021 performance test, individual PT623806020'; bibkey.tJX_PT623806020 = 'ACBMPT2021';
+data.tJX_PT524148448 = [0 6.0; 1 5.9; 2 6.8; 3 7.0; 4 8.1; 5 7.3; 6 6.5; 7 7.5; 8 7.0; 9 6.5; 10 6.8; 11 7.8; 12 7.3; 13 6.5; 14 7.0; 15 7.1; 16 7.2; 17 6.6; 18 7.1; 19 7.9; 20 4.1; 21 7.0; 22 6.5; 23 7.1; 24 7.5; 25 8.6; 26 7.2; 27 6.0; 28 5.2; 29 7.2; 30 7.9; 31 6.0; 32 7.9; 33 7.1; 34 6.9; 35 7.8; 36 7.6; 37 5.2; 38 7.7; 39 6.9; 40 7.0; 41 5.8; 42 5.7; 43 7.3; 44 7.4; 45 5.8; 46 6.4; 47 6.1; 48 7.1; 49 6.5; 50 6.8; 52 5.5; 53 5.3; 54 6.8; 55 6.7; 56 7.0; 57 6.5; 58 5.9; 59 5.9; 60 5.6; 61 5.2; 62 4.0; 63 3.4; 64 4.0; 65 5.0; 66 6.4; 67 6.0; 68 7.3; 69 5.9; 70 4.3; 71 6.9; 72 6.2; 73 6.9; 74 5.1; 75 5.7; 76 6.6; 78 5.5; 79 6.2; 80 5.6; 81 7.0; 82 6.6; 83 3.7; 84 6.7; 85 7.3; 86 5.6; 87 7.4; 88 7.2; 89 6.4; 90 7.0; 91 6.9; 92 4.7; 93 7.1; 94 7.1; 95 6.8; 96 7.0; 97 6.2; 98 4.9; 99 6.5; 100 7.4; 101 8.2; 102 7.1; 103 6.6; 104 7.0; 105 7.9; 106 5.0; 107 6.3; 108 6.5; 109 6.6; 110 8.2; 111 6.9; 112 9.0; 113 8.0; 114 7.8; 115 8.3; 116 7.0; 117 8.3; 118 7.0; 119 7.9];
+init.tJX_PT524148448 = 268.0; units.init.tJX_PT524148448 = 'kg'; label.init.tJX_PT524148448 = 'Initial weight';
+units.tJX_PT524148448 = {'d', 'kg'}; label.tJX_PT524148448 = {'Time since start', 'Daily food consumption'}; txtData.title.tJX_PT524148448 = 'Daily feed consumption of individual PT524148448'; comment.tJX_PT524148448 = 'Data from 2021 performance test, individual PT524148448'; bibkey.tJX_PT524148448 = 'ACBMPT2021';
 
 
 
@@ -45,18 +45,18 @@ metaData.ind_data_types = { 'tJX', 'tW' };
 
 % Cell array of ind_ids
 data.ind_list = 10; units.ind_list = '-'; label.ind_list = 'Dummy variable'; comment.ind_list = 'List of individuals'; bibkey.ind_list = '-'; 
-tiers.ind_list = {'PT623806020'}; units.tiers.ind_list = '-'; label.tiers.ind_list = 'List of individuals'; 
+tiers.ind_list = {'PT524148448'}; units.tiers.ind_list = '-'; label.tiers.ind_list = 'List of individuals'; 
 metaData.ind_list = tiers.ind_list; % Save in metaData to use in pars_init.m
 
 % Cell array of tier_sample_ids
 data.tier_sample_list = 10; units.tier_sample_list = '-'; label.tier_sample_list = 'Dummy variable'; comment.tier_sample_list = 'Tier sample list'; bibkey.tier_sample_list = '-'; 
-tiers.tier_sample_list = {'PT623806020'}; units.tiers.tier_sample_list = '-'; label.tiers.tier_sample_list = 'Tier sample list'; 
+tiers.tier_sample_list = {'PT524148448'}; units.tiers.tier_sample_list = '-'; label.tiers.tier_sample_list = 'Tier sample list'; 
 metaData.tier_sample_list = tiers.tier_sample_list; % Save in metaData to use in pars_init.m
 
 % Struct with form
 % tier_sample_inds.(tier_sample_id) = list_of_inds_in_tier_sample
 data.tier_sample_inds = 10; units.tier_sample_inds = '-'; label.tier_sample_inds = 'Dummy variable'; comment.tier_sample_inds = 'List of individuals that belong to the name sample'; bibkey.tier_sample_inds = '-'; 
-tiers.tier_sample_inds = struct('PT623806020', {{'PT623806020'}}); units.tiers.tier_sample_inds = '-'; label.tiers.tier_sample_inds = 'List of individuals that belong to the name sample'; 
+tiers.tier_sample_inds = struct('PT524148448', {{'PT524148448'}}); units.tiers.tier_sample_inds = '-'; label.tiers.tier_sample_inds = 'List of individuals that belong to the name sample'; 
 
 
 %% Tier parameters
@@ -67,7 +67,7 @@ metaData.tier_pars = tiers.tier_pars; % Save in metaData to use in pars_init.m
 
 % Initial values for each tier parameter and sample
 % Struct with form tier_par_init_values.(par).(tier_sample_id) = value;
-metaData.tier_par_init_values = struct('p_Am', struct('PT623806020', 4738.300057317489), 'kap_X', struct('PT623806020', 0.12925825857916134));
+metaData.tier_par_init_values = struct('p_Am', struct('PT524148448', 4738.300065098751), 'kap_X', struct('PT524148448', 0.12925825837266774));
 
 %% Set temperature data and remove weights for dummy variables
 weights = setweights(data, []);

@@ -153,9 +153,9 @@ if __name__ == '__main__':
     print(f'Estimation started at {start_date.ctime()}\n')
 
     # Breed tier
-    multitier.tiers['breed'].estimate(hide_output=False)
-    # multitier.tiers['breed'].load_results()
-    save_extra_data('breed')
+    # multitier.tiers['breed'].estimate(hide_output=False)
+    multitier.tiers['breed'].load_results()
+    # save_extra_data('breed')
 
     # Trial tier
     multitier.tiers['trial'].estimate(hide_output=False)

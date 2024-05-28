@@ -12,7 +12,7 @@ estim_options('max_step_number',500);
 estim_options('max_fun_evals',5e4);
 estim_options('simplex_size',0.05);
 estim_options('filter',0);
-tol_simplex = 0.0001;  
+tol_simplex = 1e-05;  
 estim_options('tol_simplex',tol_simplex);
 
 estim_options('pars_init_method', 2);
@@ -20,7 +20,7 @@ estim_options('results_output', 0);
 estim_options('method', 'nm');
 [nsteps, info, fval] = estim_pars;
 
-n_runs = 200;
+n_runs = 2000;
 estim_options('pars_init_method', 1);
 estim_options('results_output', 0);
 prev_fval = 1e10;
