@@ -12,7 +12,7 @@ par.T_ref = C2K(20); free.T_ref = 0; units.T_ref = 'K';        label.T_ref = 'Re
 % parameters have free set to 0   
 
 % group parameters
-par.p_Am      = 4389.2522793236885;          free.p_Am      = 0;     units.p_Am = 'J/d.cm^2';  label.p_Am      = 'Surface-specific maximum assimilation rate for females';
+par.p_Am      = 4389.252305257811;          free.p_Am      = 0;     units.p_Am = 'J/d.cm^2';  label.p_Am      = 'Surface-specific maximum assimilation rate for females';
 par.kap_X     = 0.1160905692141405;         free.kap_X     = 0;     units.kap_X = '-';        label.kap_X     = 'digestion efficiency of food to reserve'; % from measured efficiency (Wilk2004 in AndrBlow2004)
 par.v         = 0.0494238506117011;             free.v         = 0;     units.v     = 'cm/d';     label.v         = 'energy conductance';
 par.kap       = 0.9263673891221446;           free.kap       = 0;     units.kap   = '-';        label.kap       = 'allocation fraction to soma';

@@ -12,8 +12,8 @@ par.T_ref = C2K(20); free.T_ref = 0; units.T_ref = 'K';        label.T_ref = 'Re
 % parameters have free set to 0   
 
 % group parameters
-par.p_Am      = 4738.300065098751;          free.p_Am      = 0;     units.p_Am = 'J/d.cm^2';  label.p_Am      = 'Surface-specific maximum assimilation rate for females';
-par.kap_X     = 0.12925825837266774;         free.kap_X     = 0;     units.kap_X = '-';        label.kap_X     = 'digestion efficiency of food to reserve'; % from measured efficiency (Wilk2004 in AndrBlow2004)
+par.p_Am      = 4738.3000819526615;          free.p_Am      = 0;     units.p_Am = 'J/d.cm^2';  label.p_Am      = 'Surface-specific maximum assimilation rate for females';
+par.kap_X     = 0.12925825863976853;         free.kap_X     = 0;     units.kap_X = '-';        label.kap_X     = 'digestion efficiency of food to reserve'; % from measured efficiency (Wilk2004 in AndrBlow2004)
 par.v         = 0.0494238506117011;             free.v         = 0;     units.v     = 'cm/d';     label.v         = 'energy conductance';
 par.kap       = 0.9263673891221446;           free.kap       = 0;     units.kap   = '-';        label.kap       = 'allocation fraction to soma';
 par.p_M       = 106.03582321090389;           free.p_M       = 0;     units.p_M   = 'J/d.cm^3'; label.p_M       = '[p_M], vol-spec somatic maint';

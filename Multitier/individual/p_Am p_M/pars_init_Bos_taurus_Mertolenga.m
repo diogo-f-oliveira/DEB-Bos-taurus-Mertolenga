@@ -12,11 +12,11 @@ par.T_ref = C2K(20); free.T_ref = 0; units.T_ref = 'K';        label.T_ref = 'Re
 % parameters have free set to 0   
 
 % group parameters
-par.p_Am      = 4166.6038013925045;          free.p_Am      = 0;     units.p_Am = 'J/d.cm^2';  label.p_Am      = 'Surface-specific maximum assimilation rate for females';
+par.p_Am      = 4166.603794852842;          free.p_Am      = 0;     units.p_Am = 'J/d.cm^2';  label.p_Am      = 'Surface-specific maximum assimilation rate for females';
 par.kap_X     = 0.1160905692141405;         free.kap_X     = 0;     units.kap_X = '-';        label.kap_X     = 'digestion efficiency of food to reserve'; % from measured efficiency (Wilk2004 in AndrBlow2004)
 par.v         = 0.0494238506117011;             free.v         = 0;     units.v     = 'cm/d';     label.v         = 'energy conductance';
 par.kap       = 0.9263673891221446;           free.kap       = 0;     units.kap   = '-';        label.kap       = 'allocation fraction to soma';
-par.p_M       = 94.12511857880408;           free.p_M       = 0;     units.p_M   = 'J/d.cm^3'; label.p_M       = '[p_M], vol-spec somatic maint';
+par.p_M       = 94.12511789290575;           free.p_M       = 0;     units.p_M   = 'J/d.cm^3'; label.p_M       = '[p_M], vol-spec somatic maint';
 par.E_G       = 7835.884322424627;           free.E_G       = 0;     units.E_G   = 'J/cm^3';   label.E_G       = '[E_G], spec cost for structure';
 par.E_Hb      = 7208394.226536401;          free.E_Hb      = 0;     units.E_Hb  = 'J';        label.E_Hb      = 'maturity at birth';
 par.E_Hx      = 39254156.332537286;          free.E_Hx      = 0;     units.E_Hx  = 'J';        label.E_Hx      = 'maturity at weaning';

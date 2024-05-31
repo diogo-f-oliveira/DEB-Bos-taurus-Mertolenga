@@ -149,31 +149,32 @@ def save_extra_data(tier_name, data_to_save=None):
 
 if __name__ == '__main__':
     multitier = create_tier_structure()
-    start_date = dt.datetime.now()
-    print(f'Estimation started at {start_date.ctime()}\n')
+
+    # start_date = dt.datetime.now()
+    # print(f'Estimation started at {start_date.ctime()}\n')
 
     # Breed tier
     # multitier.tiers['breed'].estimate(hide_output=False)
-    multitier.tiers['breed'].load_results()
+    # multitier.tiers['breed'].load_results()
     # save_extra_data('breed')
 
     # Trial tier
-    multitier.tiers['trial'].estimate(hide_output=False)
+    # multitier.tiers['trial'].estimate(hide_output=False)
     # multitier.tiers['trial'].load_results()
 
     # Individual tier
-    multitier.tiers['individual'].estimate(hide_output=True)
+    # multitier.tiers['individual'].estimate(hide_output=True)
     # multitier.tiers['individual'].load_results()
 
-    end_date = dt.datetime.now()
-    print(f'Estimation ended at {end_date.ctime()}')
-    print(f'Total time elapsed: {end_date - start_date}')
+    # end_date = dt.datetime.now()
+    # print(f'Estimation ended at {end_date.ctime()}')
+    # print(f'Total time elapsed: {end_date - start_date}')
 
-    # estimate_all_par_combinations(
-    #     tier_structure=multitier,
-    #     pars_combinations=get_all_par_combinations(
-    #         ind_par_choices=['p_Am', 'kap_X', 'p_M', 'v', 'kap'],
-    #         n_par_options=[1, 2],
-    #     ),
-    #     reestimate_complete=False,
-    # )
+    estimate_all_par_combinations(
+        tier_structure=multitier,
+        pars_combinations=get_all_par_combinations(
+            ind_par_choices=['p_Am', 'kap_X', 'p_M', 'v', 'kap'],
+            n_par_options=[1, 2],
+        ),
+        reestimate_complete=False,
+    )
