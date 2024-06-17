@@ -1,11 +1,8 @@
+from DEBtoolPyIF.data_sources.collection import DataCollection
+from DEBtoolPyIF.data_sources.individual import TimeWeightDataSource, TimeFeedIndDataSource
+from DEBtoolPyIF.multitier.procedure import MultiTierStructure, estimate_all_par_combinations
 import pandas as pd
-from DEBtoolPyIF.data_sources import TimeWeightDataSource, TimeFeedIndDataSource, DataCollection
-from DEBtoolPyIF.multitier import MultiTierStructure, estimate_all_par_combinations
-from DEBtoolPyIF.utils import format_dict_data, format_aux_data
-
 from itertools import combinations
-import os
-import datetime as dt
 
 
 def load_data():
